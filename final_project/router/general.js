@@ -96,7 +96,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
         resolve(res.send( JSON.stringify(book, null, 5) ));
         }
         else {
-        resolve(res.send("book not found"));
+        resolve(res.send("Sorry, We couldn't find a book with this ISBN"));
         }
     });
 
@@ -106,18 +106,18 @@ public_users.get('/isbn/:isbn',function (req, res) {
 
 public_users.get('/author/:author',function (req, res) {
     let promise = new Promise( function(resolve,reject) {
-        let author = req.params.author
+        let author = req.params.author;
         let result = {
         "booksByAuthor": []
         }
         
-        let keys = Object.keys(books)
+        let keys = Object.keys(books);
 
         for(let key of keys) {
-        let book = books[key]
-        if(book.author == author) {
-            result['booksByAuthor'].push(book)
-        }
+          let book = books[key];
+          if(book.author == author) {
+              result['booksByAuthor'].push(book)
+          }
         }
         
         resolve(res.send( JSON.stringify(result,null,5) ))
@@ -131,21 +131,22 @@ public_users.get('/title/:title',function (req, res) {
         let title = req.params.title;
         
         let result = {
-        "booksByTitle": []
+          "booksByTitle": []
         }
         
-        let keys = Object.keys(books)
+        let keys = Object.keys(books);
 
         for(let key of keys) {  
-        let book = books[key]
-        if(book.title == title) {
-            result['booksByTitle'].push(book)
-        }
+          let book = books[key]
+          if(book.title == title) {
+              result['booksByTitle'].push(book)
+          }
         }
 
-        resolve(res.send( JSON.stringify(result,null,5) ))
+        resolve(res.send( JSON.stringify(result,null,5) ));
     });
 
-    promise.then( () => console.log("books with title is send successful ") )
+    promise.then( () => console.log("Books with the requested title has been sent successfully.") )
 });
+
 module.exports.general = public_users;
