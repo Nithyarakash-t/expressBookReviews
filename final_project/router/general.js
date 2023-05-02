@@ -15,7 +15,7 @@ public_users.post("/register", (req,res) => {
         username,
         password
     })
-    res.status(200).json({message: `Customer - ${username} successfully registred. You can now login`});
+    res.status(200).json({message: `Customer successfully registred. You can now login`});
   }
   else {
     return res.send(`Unable to register, username is invalid / exists. Choose a different username.`)
